@@ -12,8 +12,9 @@ public class ConnectionFactory {
 
         try {
             String url = "jdbc:h2:./comex;;DB_CLOSE_ON_EXIT=FALSE;"
-                       + "INIT=runscript from './schema.sql'\\;"
-                       + "runscript from './data.sql'";
+                    //   + "INIT=runscript from './schema.sql'\\;"
+                    //   + "runscript from './data.sql'"
+                    ;
             
             return DriverManager.getConnection(url, usuario, senha);
         } catch (SQLException e) {

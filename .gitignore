@@ -29,7 +29,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
-### H2 databases ###
-*.mv.db
-*.trace.db
