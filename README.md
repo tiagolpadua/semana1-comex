@@ -14,7 +14,7 @@ Transforme o projeto em um projeto Maven para facilitar a gestão de dependênci
 3. Configure o plugin do Maven para compilar e testar o projeto.
 
 ### 2. Organizar o Projeto em Módulos
-Organize o projeto em módulos para melhorar a estrutura e a manutenção do código. Utilize o critério de agrupamento de código que achar mais coerente. Discuta com o professor na monitoria como podemos organizar um projeto seguindo **package by layer** e **package by context**.
+Organize o projeto em módulos para melhorar a estrutura e a manutenção do código. Utilize o critério de agrupamento de código que achar mais coerente. Discuta com o professor na monitoria como podemos organizar um projeto seguindo *package by layer* e *package by feature*.
 
 ### 3. Execute as Classes de Teste
 Execute as classes de teste (`Testa*`). Todas têm erro, e você deve implementar corretamente o tratamento de exceção.
