@@ -1,5 +1,8 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.models.Categoria;
+import br.com.alura.comex.daos.CategoriaDao;
+
 import java.util.List;
 
 public class TestaConsultaDeCategoria {

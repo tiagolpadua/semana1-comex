@@ -1,5 +1,9 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.models.Categoria;
+import br.com.alura.comex.models.Produto;
+import br.com.alura.comex.daos.ProdutoDao;
+
 public class TestaCadastroDeProduto {
 
     public static void main(String[] args) {
@@ -9,7 +13,7 @@ public class TestaCadastroDeProduto {
         produto.setPreco(1200.0);
 
         Categoria categoria = new Categoria();
-        categoria.setId(4L);
+        categoria.setId(2L);
 
         produto.adicionaCategoria(categoria);
 
@@ -17,7 +21,7 @@ public class TestaCadastroDeProduto {
         produtoDao.cadastra(produto);
         System.out.println("Produto cadastrado com sucesso!");
 
-        Produto produtoConsultado = produtoDao.consulta(6);
+        Produto produtoConsultado = produtoDao.consulta(produto.getId());
 
         System.out.println("ID: " + produtoConsultado.getId());
         System.out.println("NOME: " + produtoConsultado.getNome());

@@ -1,4 +1,4 @@
-package br.com.alura.comex;
+package br.com.alura.comex.models;
 
 import java.util.ArrayList;
 import java.util.Collections;

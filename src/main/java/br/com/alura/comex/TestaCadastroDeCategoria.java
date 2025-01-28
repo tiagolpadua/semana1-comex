@@ -1,5 +1,8 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.models.Categoria;
+import br.com.alura.comex.daos.CategoriaDao;
+
 public class TestaCadastroDeCategoria {
 
     public static void main(String[] args) {
@@ -11,7 +14,7 @@ public class TestaCadastroDeCategoria {
 
         System.out.println("Categoria cadastrada com sucesso!");
 
-        Categoria categoriaConsultada = dao.pesquisaPeloId(4L);
+        Categoria categoriaConsultada = dao.pesquisaPeloId(categoria.getId());
         System.out.println("ID: " + categoriaConsultada.getId());
         System.out.println("NOME: " + categoriaConsultada.getNome());
     }

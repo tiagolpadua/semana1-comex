@@ -1,6 +1,7 @@
 package br.com.alura.comex;
 
-import java.util.List;
+import br.com.alura.comex.models.Cliente;
+import br.com.alura.comex.daos.ClienteDao;
 
 public class TestaCadastroDeCliente {
 
@@ -21,7 +22,7 @@ public class TestaCadastroDeCliente {
 
         System.out.println("Cliente cadastrado com sucesso!");
 
-        Cliente cliente = clienteDao.pesquisaPeloId(4L);
+        Cliente cliente = clienteDao.pesquisaPeloId(novoCliente.getId());
         System.out.println("ID: " + cliente.getId());
         System.out.println("NOME: " + cliente.getNome());
         System.out.println("CPF: " + cliente.getCpf());
