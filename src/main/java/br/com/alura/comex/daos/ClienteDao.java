@@ -3,7 +3,11 @@ package br.com.alura.comex.daos;
 import br.com.alura.comex.db.ConnectionFactory;
 import br.com.alura.comex.db.DatabaseUtils;
 import br.com.alura.comex.models.Cliente;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,11 +57,11 @@ public class ClienteDao {
   public void cadastra(Cliente cliente) {
     String sql =
         """
-                     insert into cliente
-                        (nome, email, telefone, cpf, logradouro, bairro, cidade, uf, cep)
-                     values
-                        (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                     """;
+        insert into cliente
+           (nome, email, telefone, cpf, logradouro, bairro, cidade, uf, cep)
+        values
+           (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """;
 
     try (PreparedStatement comando =
         conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -102,18 +106,18 @@ public class ClienteDao {
   public void atualiza(Cliente cliente) {
     String sql =
         """
-                     update cliente set
-                        nome = ?,
-                        email = ?,
-                        telefone = ?,
-                        cpf = ?,
-                        logradouro = ?,
-                        bairro = ?,
-                        cidade = ?,
-                        uf = ?,
-                        cep = ?
-                     where id = ?
-                     """;
+        update cliente set
+           nome = ?,
+           email = ?,
+           telefone = ?,
+           cpf = ?,
+           logradouro = ?,
+           bairro = ?,
+           cidade = ?,
+           uf = ?,
+           cep = ?
+        where id = ?
+        """;
 
     try (PreparedStatement comando = conexao.prepareStatement(sql)) {
       comando.setString(1, cliente.getNome());
