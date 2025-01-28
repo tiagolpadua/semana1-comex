@@ -3,121 +3,125 @@ package br.com.alura.comex.daos;
 import br.com.alura.comex.db.ConnectionFactory;
 import br.com.alura.comex.db.DatabaseUtils;
 import br.com.alura.comex.models.Categoria;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaDao {
 
-    private Connection conexao;
+  private Connection conexao;
 
-    public CategoriaDao() {
-        this.conexao = new ConnectionFactory().criaConexao();
+  public CategoriaDao() {
+    this.conexao = new ConnectionFactory().criaConexao();
+  }
+
+  public List<Categoria> listaTodos() {
+    String sql = "select * from categoria";
+
+    try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+      ResultSet resultSet = comando.executeQuery();
+
+      List<Categoria> lista = new ArrayList<>();
+      while (resultSet.next()) {
+        lista.add(montaCategoria(resultSet));
+      }
+
+      resultSet.close();
+      return lista;
+    } catch (SQLException e) {
+      throw new RuntimeException("Erro ao consultar todas as categorias", e);
     }
+  }
 
-    public List<Categoria> listaTodos() {
-        String sql = "select * from categoria";
+  private Categoria montaCategoria(ResultSet resultSet) throws SQLException {
+    Categoria categoria = new Categoria();
+    categoria.setId(resultSet.getLong("id"));
+    categoria.setNome(resultSet.getString("nome"));
 
-        try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-            ResultSet resultSet = comando.executeQuery();
+    return categoria;
+  }
 
-            List<Categoria> lista = new ArrayList<>();
-            while (resultSet.next()) {
-                lista.add(montaCategoria(resultSet));
-            }
+  public void cadastra(Categoria categoria) {
+    String sql = "insert into categoria (nome) values (?)";
 
-            resultSet.close();
-            return lista;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao consultar todas as categorias", e);
-        }
+    try (PreparedStatement comando =
+        conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+      comando.setString(1, categoria.getNome());
+
+      comando.execute();
+
+      Long idGerado = DatabaseUtils.recuperaIdGerado(comando);
+      categoria.setId(idGerado);
+    } catch (SQLException e) {
+      throw new RuntimeException("Erro ao salvar categoria.", e);
     }
+  }
 
-    private Categoria montaCategoria(ResultSet resultSet) throws SQLException {
-        Categoria categoria = new Categoria();
-        categoria.setId(resultSet.getLong("id"));
-        categoria.setNome(resultSet.getString("nome"));
+  public void exclui(Categoria categoria) {
+    String sql = "delete from categoria where id = ?";
 
-        return categoria;
+    try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+      comando.setLong(1, categoria.getId());
+      comando.execute();
+    } catch (SQLException e) {
+      throw new RuntimeException("Erro ao excluir categoria.", e);
     }
+  }
 
-    public void cadastra(Categoria categoria) {
-        String sql = "insert into categoria (nome) values (?)";
+  public void atualiza(Categoria categoria) {
+    String sql = "update categoria set nome = ? where id = ?";
 
-        try (PreparedStatement comando = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            comando.setString(1, categoria.getNome());
+    try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+      comando.setString(1, categoria.getNome());
+      comando.setLong(2, categoria.getId());
 
-            comando.execute();
-
-            Long idGerado = DatabaseUtils.recuperaIdGerado(comando);
-            categoria.setId(idGerado);
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao salvar categoria.", e);
-        }
+      comando.execute();
+    } catch (SQLException e) {
+      throw new RuntimeException("Erro ao atualizar categoria.", e);
     }
+  }
 
-    public void exclui(Categoria categoria) {
-        String sql = "delete from categoria where id = ?";
+  public Categoria pesquisaPeloId(long id) {
+    String sql = "select * from categoria where id = ?";
 
-        try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-            comando.setLong(1, categoria.getId());
-            comando.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao excluir categoria.", e);
-        }
+    try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+      comando.setLong(1, id);
+
+      ResultSet resultSet = comando.executeQuery();
+
+      Categoria possivelCategoria = null;
+      if (resultSet.next()) {
+        possivelCategoria = montaCategoria(resultSet);
+      }
+
+      resultSet.close();
+      return possivelCategoria;
+    } catch (SQLException e) {
+      throw new RuntimeException("Erro ao pesquisar categoria por ID", e);
     }
+  }
 
-    public void atualiza(Categoria categoria) {
-        String sql = "update categoria set nome = ? where id = ?";
+  public Categoria buscaPorId(long id) {
+    String sql = "select * from categoria where id = ?";
 
-        try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-            comando.setString(1, categoria.getNome());
-            comando.setLong(2, categoria.getId());
+    try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+      comando.setLong(1, id);
 
-            comando.execute();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao atualizar categoria.", e);
-        }
+      ResultSet resultSet = comando.executeQuery();
+
+      Categoria possivelCategoria = null;
+      if (resultSet.next()) {
+        possivelCategoria = montaCategoria(resultSet);
+      }
+
+      resultSet.close();
+      return possivelCategoria;
+    } catch (SQLException e) {
+      throw new RuntimeException("Erro ao pesquisar categoria por ID", e);
     }
-
-    public Categoria pesquisaPeloId(long id) {
-        String sql = "select * from categoria where id = ?";
-
-        try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-            comando.setLong(1, id);
-
-            ResultSet resultSet = comando.executeQuery();
-
-            Categoria possivelCategoria = null;
-            if (resultSet.next()) {
-                possivelCategoria = montaCategoria(resultSet);
-            }
-
-            resultSet.close();
-            return possivelCategoria;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao pesquisar categoria por ID", e);
-        }
-    }
-
-    public Categoria buscaPorId(long id) {
-        String sql = "select * from categoria where id = ?";
-
-        try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-            comando.setLong(1, id);
-
-            ResultSet resultSet = comando.executeQuery();
-
-            Categoria possivelCategoria = null;
-            if (resultSet.next()) {
-                possivelCategoria = montaCategoria(resultSet);
-            }
-
-            resultSet.close();
-            return possivelCategoria;
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao pesquisar categoria por ID", e);
-        }
-    }
+  }
 }

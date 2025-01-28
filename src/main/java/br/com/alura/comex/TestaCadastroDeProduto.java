@@ -1,34 +1,34 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.daos.ProdutoDao;
 import br.com.alura.comex.models.Categoria;
 import br.com.alura.comex.models.Produto;
-import br.com.alura.comex.daos.ProdutoDao;
 
 public class TestaCadastroDeProduto {
 
-    public static void main(String[] args) {
-        Produto produto = new Produto();
-        produto.setNome("Cadeira Gamer");
-        produto.setDescricao("Cadeira Gamer com almofadas e ajuste de altura");
-        produto.setPreco(1200.0);
+  public static void main(String[] args) {
+    Produto produto = new Produto();
+    produto.setNome("Cadeira Gamer");
+    produto.setDescricao("Cadeira Gamer com almofadas e ajuste de altura");
+    produto.setPreco(1200.0);
 
-        Categoria categoria = new Categoria();
-        categoria.setId(2L);
+    Categoria categoria = new Categoria();
+    categoria.setId(2L);
 
-        produto.adicionaCategoria(categoria);
+    produto.adicionaCategoria(categoria);
 
-        ProdutoDao produtoDao = new ProdutoDao();
-        produtoDao.cadastra(produto);
-        System.out.println("Produto cadastrado com sucesso!");
+    ProdutoDao produtoDao = new ProdutoDao();
+    produtoDao.cadastra(produto);
+    System.out.println("Produto cadastrado com sucesso!");
 
-        Produto produtoConsultado = produtoDao.consulta(produto.getId());
+    Produto produtoConsultado = produtoDao.consulta(produto.getId());
 
-        System.out.println("ID: " + produtoConsultado.getId());
-        System.out.println("NOME: " + produtoConsultado.getNome());
-        System.out.println("CATEGORIAS:");
+    System.out.println("ID: " + produtoConsultado.getId());
+    System.out.println("NOME: " + produtoConsultado.getNome());
+    System.out.println("CATEGORIAS:");
 
-        for (Categoria cat : produtoConsultado.getCategorias()) {
-            System.out.println("  " + cat.getId() + " => " + cat.getNome());
-        }
+    for (Categoria cat : produtoConsultado.getCategorias()) {
+      System.out.println("  " + cat.getId() + " => " + cat.getNome());
     }
+  }
 }
