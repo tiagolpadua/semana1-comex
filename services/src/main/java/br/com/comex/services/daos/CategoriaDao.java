@@ -2,6 +2,7 @@ package br.com.comex.services.daos;
 
 import br.com.comex.core.db.ConnectionFactory;
 import br.com.comex.core.db.DatabaseUtils;
+import br.com.comex.core.exceptions.BusinessException;
 import br.com.comex.services.models.Categoria;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +34,7 @@ public class CategoriaDao {
       resultSet.close();
       return lista;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao consultar todas as categorias", e);
+      throw new BusinessException("Erro ao consultar todas as categorias", e);
     }
   }
 
@@ -57,7 +58,7 @@ public class CategoriaDao {
       Long idGerado = DatabaseUtils.recuperaIdGerado(comando);
       categoria.setId(idGerado);
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao salvar categoria.", e);
+      throw new BusinessException("Erro ao salvar categoria.", e);
     }
   }
 
@@ -68,7 +69,7 @@ public class CategoriaDao {
       comando.setLong(1, categoria.getId());
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao excluir categoria.", e);
+      throw new BusinessException("Erro ao excluir categoria.", e);
     }
   }
 
@@ -81,7 +82,7 @@ public class CategoriaDao {
 
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao atualizar categoria.", e);
+      throw new BusinessException("Erro ao atualizar categoria.", e);
     }
   }
 
@@ -101,7 +102,7 @@ public class CategoriaDao {
       resultSet.close();
       return possivelCategoria;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao pesquisar categoria por ID", e);
+      throw new BusinessException("Erro ao pesquisar categoria por ID", e);
     }
   }
 
@@ -121,7 +122,7 @@ public class CategoriaDao {
       resultSet.close();
       return possivelCategoria;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao pesquisar categoria por ID", e);
+      throw new BusinessException("Erro ao pesquisar categoria por ID", e);
     }
   }
 }

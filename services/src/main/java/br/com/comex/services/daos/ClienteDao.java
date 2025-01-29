@@ -2,6 +2,7 @@ package br.com.comex.services.daos;
 
 import br.com.comex.core.db.ConnectionFactory;
 import br.com.comex.core.db.DatabaseUtils;
+import br.com.comex.core.exceptions.BusinessException;
 import br.com.comex.services.models.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,7 +35,7 @@ public class ClienteDao {
 
       return lista;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao consultar todos os clientes", e);
+      throw new BusinessException("Erro ao consultar todos os clientes", e);
     }
   }
 
@@ -80,14 +81,14 @@ public class ClienteDao {
       var novoId = DatabaseUtils.recuperaIdGerado(comando);
 
       if (novoId == null) {
-        throw new RuntimeException("Id nulo");
+        throw new BusinessException("Id nulo");
       }
 
       cliente.setId(novoId);
 
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Deu merda na hora de salvar...", e);
+      throw new BusinessException("Deu merda na hora de salvar...", e);
     }
   }
 
@@ -99,7 +100,7 @@ public class ClienteDao {
 
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao excluir cliente.", e);
+      throw new BusinessException("Erro ao excluir cliente.", e);
     }
   }
 
@@ -133,7 +134,7 @@ public class ClienteDao {
 
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao atualizar cliente.", e);
+      throw new BusinessException("Erro ao atualizar cliente.", e);
     }
   }
 
@@ -153,7 +154,7 @@ public class ClienteDao {
       resultSet.close();
       return possivelCliente;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao pesquisar cliente por ID", e);
+      throw new BusinessException("Erro ao pesquisar cliente por ID", e);
     }
   }
 }

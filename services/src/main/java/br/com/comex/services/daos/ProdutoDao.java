@@ -2,6 +2,7 @@ package br.com.comex.services.daos;
 
 import br.com.comex.core.db.ConnectionFactory;
 import br.com.comex.core.db.DatabaseUtils;
+import br.com.comex.core.exceptions.BusinessException;
 import br.com.comex.services.models.Categoria;
 import br.com.comex.services.models.Produto;
 import java.sql.*;
@@ -31,7 +32,7 @@ public class ProdutoDao {
 
       insereCategoriasProduto(produto);
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao salvar produto.", e);
+      throw new BusinessException("Erro ao salvar produto.", e);
     }
   }
 
@@ -50,7 +51,7 @@ public class ProdutoDao {
       excluiCategoriasProduto(produto);
       insereCategoriasProduto(produto);
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao atualizar produto.", e);
+      throw new BusinessException("Erro ao atualizar produto.", e);
     }
   }
 
@@ -64,7 +65,7 @@ public class ProdutoDao {
       comando.setLong(1, produto.getId());
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao excluir produto.", e);
+      throw new BusinessException("Erro ao excluir produto.", e);
     }
   }
 
@@ -102,7 +103,7 @@ public class ProdutoDao {
       comando.close();
       return produtos;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao listar todos os produtos.", e);
+      throw new BusinessException("Erro ao listar todos os produtos.", e);
     }
   }
 
@@ -113,7 +114,7 @@ public class ProdutoDao {
       comando.setLong(1, produto.getId());
       comando.execute();
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao excluir categorias do produto.", e);
+      throw new BusinessException("Erro ao excluir categorias do produto.", e);
     }
   }
 
@@ -129,7 +130,7 @@ public class ProdutoDao {
         comando.execute();
       }
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao salvar categorias do produto.", e);
+      throw new BusinessException("Erro ao salvar categorias do produto.", e);
     }
   }
 
@@ -164,7 +165,7 @@ public class ProdutoDao {
       comando.close();
       return produto;
     } catch (SQLException e) {
-      throw new RuntimeException("Erro ao consultar produto.", e);
+      throw new BusinessException("Erro ao consultar produto.", e);
     }
   }
 
