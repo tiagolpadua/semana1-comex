@@ -1,0 +1,70 @@
+2025-01-27 22:41:04.316290-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "produtos.id" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getLong(JdbcResultSet.java:745)
+	at br.com.alura.comex.daos.ProdutoDao.listaTodos(ProdutoDao.java:86)
+	at br.com.alura.comex.TestaConsultaDeProduto.main(TestaConsultaDeProduto.java:13)
+2025-01-27 22:42:53.731051-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "bairo" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:301)
+	at br.com.alura.comex.daos.ClienteDao.montaCliente(ClienteDao.java:46)
+	at br.com.alura.comex.daos.ClienteDao.listaTodos(ClienteDao.java:27)
+	at br.com.alura.comex.TestaConsultaDeCliente.main(TestaConsultaDeCliente.java:15)
+2025-01-27 22:43:43.146025-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CATEGORIAS" not found; SQL statement:
+select * from categorias [42102-232]
+2025-01-27 22:45:55.522854-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "TEL" not found; SQL statement:
+insert into cliente
+   (nome, email, tel, cpf, logradouro, bairro, cidade, uf, cep)
+values
+   (?, ?, ?, ?, ?, ?, ?, ?, ?)
+ [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:786)
+	at org.h2.command.Parser.parseColumn(Parser.java:1171)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1156)
+	at org.h2.command.Parser.parseInsert(Parser.java:1530)
+	at org.h2.command.Parser.parsePrepared(Parser.java:698)
+	at org.h2.command.Parser.parse(Parser.java:581)
+	at org.h2.command.Parser.parse(Parser.java:556)
+	at org.h2.command.Parser.prepareCommand(Parser.java:484)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:1092)
+	at br.com.alura.comex.daos.ClienteDao.cadastra(ClienteDao.java:62)
+	at br.com.alura.comex.TestaCadastroDeCliente.main(TestaCadastroDeCliente.java:21)
+2025-01-28 15:15:21.257804-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Invalid value "5" for parameter "parameterIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1396)
+	at org.h2.jdbc.JdbcPreparedStatement.setString(JdbcPreparedStatement.java:388)
+	at br.com.alura.comex.daos.CategoriaDao.cadastra(CategoriaDao.java:49)
+	at br.com.alura.comex.TestaCadastroDeCategoria.main(TestaCadastroDeCategoria.java:13)
+2025-01-28 15:16:10.019634-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Invalid value "0" for parameter "parameterIndex" [90008-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:658)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:298)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1396)
+	at org.h2.jdbc.JdbcPreparedStatement.setString(JdbcPreparedStatement.java:388)
+	at br.com.alura.comex.daos.CategoriaDao.cadastra(CategoriaDao.java:49)
+	at br.com.alura.comex.TestaCadastroDeCategoria.main(TestaCadastroDeCategoria.java:13)
