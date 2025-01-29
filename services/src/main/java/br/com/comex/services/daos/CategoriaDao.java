@@ -1,9 +1,5 @@
 package br.com.comex.services.daos;
 
-import br.com.comex.core.db.ConnectionFactory;
-import br.com.comex.core.db.DatabaseUtils;
-import br.com.comex.core.exceptions.BusinessException;
-import br.com.comex.services.models.Categoria;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.comex.core.db.ConnectionFactory;
+import br.com.comex.core.db.DatabaseUtils;
+import br.com.comex.core.exceptions.BusinessException;
+import br.com.comex.core.exceptions.EntidadeNaoEncontradaException;
+import br.com.comex.services.models.Categoria;
 
 public class CategoriaDao {
 
@@ -49,8 +51,7 @@ public class CategoriaDao {
   public void cadastra(Categoria categoria) {
     String sql = "insert into categoria (nome) values (?)";
 
-    try (PreparedStatement comando =
-        conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+    try (PreparedStatement comando = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       comando.setString(1, categoria.getNome());
 
       comando.execute();
@@ -106,7 +107,7 @@ public class CategoriaDao {
     }
   }
 
-  public Categoria buscaPorId(long id) {
+  public Categoria buscaPorId(long id) throws EntidadeNaoEncontradaException {
     String sql = "select * from categoria where id = ?";
 
     try (PreparedStatement comando = conexao.prepareStatement(sql)) {
@@ -114,13 +115,17 @@ public class CategoriaDao {
 
       ResultSet resultSet = comando.executeQuery();
 
-      Categoria possivelCategoria = null;
+      Categoria categoriaEncontrada = null;
       if (resultSet.next()) {
-        possivelCategoria = montaCategoria(resultSet);
+        categoriaEncontrada = montaCategoria(resultSet);
+      }
+
+      if (categoriaEncontrada == null) {
+        throw new EntidadeNaoEncontradaException("Categoria não encontrada");
       }
 
       resultSet.close();
-      return possivelCategoria;
+      return categoriaEncontrada;
     } catch (SQLException e) {
       throw new BusinessException("Erro ao pesquisar categoria por ID", e);
     }
