@@ -1,5 +1,8 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.daos.CategoriaDao;
+import br.com.alura.comex.models.Categoria;
+
 public class TestaCadastroDeCategoria {
 
     public static void main(String[] args) {

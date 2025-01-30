@@ -1,4 +1,4 @@
-package br.com.alura.comex;
+package br.com.alura.comex.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

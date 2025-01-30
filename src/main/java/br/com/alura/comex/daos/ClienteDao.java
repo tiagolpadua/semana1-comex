@@ -1,4 +1,8 @@
-package br.com.alura.comex;
+package br.com.alura.comex.daos;
+
+import br.com.alura.comex.models.Cliente;
+import br.com.alura.comex.db.ConnectionFactory;
+import br.com.alura.comex.db.DatabaseUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -39,7 +43,7 @@ public class ClienteDao {
         cliente.setEmail(resultSet.getString("email"));
         cliente.setTelefone(resultSet.getString("telefone"));
         cliente.setLogradouro(resultSet.getString("logradouro"));
-        cliente.setBairro(resultSet.getString("bairo"));
+        cliente.setBairro(resultSet.getString("bairro"));
         cliente.setCidade(resultSet.getString("cidade"));
         cliente.setEstado(resultSet.getString("uf"));
         cliente.setCep(resultSet.getString("cep"));

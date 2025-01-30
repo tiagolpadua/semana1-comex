@@ -1,4 +1,9 @@
-package br.com.alura.comex;
+package br.com.alura.comex.daos;
+
+import br.com.alura.comex.models.Categoria;
+import br.com.alura.comex.models.Produto;
+import br.com.alura.comex.db.ConnectionFactory;
+import br.com.alura.comex.db.DatabaseUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -78,7 +83,7 @@ public class ProdutoDao {
             Produto produto = null;
 
             while (resultSet.next()) {
-                Long produtoId = resultSet.getLong("produtos.id");
+                Long produtoId = resultSet.getLong("produto.id");
 
                 if (produto == null || !produto.getId().equals(produtoId)) {
                     produto = montaProduto(resultSet);

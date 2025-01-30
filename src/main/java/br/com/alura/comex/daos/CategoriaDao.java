@@ -1,4 +1,8 @@
-package br.com.alura.comex;
+package br.com.alura.comex.daos;
+
+import br.com.alura.comex.models.Categoria;
+import br.com.alura.comex.db.ConnectionFactory;
+import br.com.alura.comex.db.DatabaseUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +17,7 @@ public class CategoriaDao {
     }
 
     public List<Categoria> listaTodos() {
-        String sql = "select * from categorias";
+        String sql = "select * from categoria";
 
         try (PreparedStatement comando = conexao.prepareStatement(sql)) {
             ResultSet resultSet = comando.executeQuery();
