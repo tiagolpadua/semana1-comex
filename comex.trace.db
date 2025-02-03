@@ -1,0 +1,10 @@
+2025-01-30 17:45:08.657275-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "produtos.id" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getLong(JdbcResultSet.java:745)
+	at br.com.alura.comex.daos.ProdutoDao.listaTodos(ProdutoDao.java:86)
+	at br.com.alura.comex.TestaConsultaDeProduto.main(TestaConsultaDeProduto.java:13)

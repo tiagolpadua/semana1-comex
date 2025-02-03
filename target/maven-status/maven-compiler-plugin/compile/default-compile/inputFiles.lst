@@ -1,0 +1,14 @@
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/models/Categoria.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/db/DatabaseUtils.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/daos/ProdutoDao.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/models/Cliente.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/TestaCadastroDeCategoria.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/daos/ClienteDao.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/TestaConsultaDeCliente.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/TestaCadastroDeCliente.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/daos/CategoriaDao.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/models/Produto.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/db/ConnectionFactory.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/TestaConsultaDeProduto.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/TestaCadastroDeProduto.java
+/Volumes/WD500GB/git/boost-bradesco/semana1-comex/src/main/java/br/com/alura/comex/TestaConsultaDeCategoria.java
