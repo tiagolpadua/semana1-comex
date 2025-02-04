@@ -14,7 +14,7 @@ public class TestaCadastroDeCategoria {
 
         System.out.println("Categoria cadastrada com sucesso!");
 
-        Categoria categoriaConsultada = dao.pesquisaPeloId(4L);
+        Categoria categoriaConsultada = dao.pesquisaPeloId(categoria.getId());
         System.out.println("ID: " + categoriaConsultada.getId());
         System.out.println("NOME: " + categoriaConsultada.getNome());
     }

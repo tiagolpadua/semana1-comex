@@ -54,7 +54,7 @@ public class ClienteDao {
     public void cadastra(Cliente cliente) {
         String sql = """
                      insert into cliente 
-                        (nome, email, tel, cpf, logradouro, bairro, cidade, uf, cep) 
+                        (nome, email, telefone, cpf, logradouro, bairro, cidade, uf, cep) 
                      values
                         (?, ?, ?, ?, ?, ?, ?, ?, ?)
                      """;
@@ -69,12 +69,11 @@ public class ClienteDao {
             comando.setString(7, cliente.getCidade());
             comando.setString(8, cliente.getEstado());
             comando.setString(9, cliente.getCep());
+            comando.execute();
 
             cliente.setId(DatabaseUtils.recuperaIdGerado(comando));
-
-            comando.execute();
         } catch (SQLException e) {
-            throw new RuntimeException("Deu merda na hora de salvar...", e);
+            throw new RuntimeException("Deu erro na hora de salvar...", e);
         }
     }
 

@@ -1,5 +1,6 @@
 package br.com.alura.comex.daos;
 
+import br.com.alura.comex.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.comex.models.Categoria;
 import br.com.alura.comex.models.Produto;
 import br.com.alura.comex.db.ConnectionFactory;
@@ -159,6 +160,10 @@ public class ProdutoDao {
             }
 
             comando.close();
+
+            if (produto == null) {
+               throw new EntidadeNaoEncontradaException("Produto não encontrado: " + id);
+            }
             return produto;
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao consultar produto.", e);
