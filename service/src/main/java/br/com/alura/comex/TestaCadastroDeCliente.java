@@ -22,7 +22,7 @@ public class TestaCadastroDeCliente {
 
         System.out.println("Cliente cadastrado com sucesso!");
 
-        Cliente cliente = clienteDao.pesquisaPeloId(4L);
+        Cliente cliente = clienteDao.pesquisaPeloId(novoCliente.getId());
         System.out.println("ID: " + cliente.getId());
         System.out.println("NOME: " + cliente.getNome());
         System.out.println("CPF: " + cliente.getCpf());

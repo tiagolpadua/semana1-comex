@@ -43,7 +43,7 @@ public class ClienteDao {
         cliente.setEmail(resultSet.getString("email"));
         cliente.setTelefone(resultSet.getString("telefone"));
         cliente.setLogradouro(resultSet.getString("logradouro"));
-        cliente.setBairro(resultSet.getString("bairo"));
+        cliente.setBairro(resultSet.getString("bairro"));
         cliente.setCidade(resultSet.getString("cidade"));
         cliente.setEstado(resultSet.getString("uf"));
         cliente.setCep(resultSet.getString("cep"));
@@ -54,7 +54,7 @@ public class ClienteDao {
     public void cadastra(Cliente cliente) {
         String sql = """
                      insert into cliente 
-                        (nome, email, tel, cpf, logradouro, bairro, cidade, uf, cep) 
+                        (nome, email, telefone, cpf, logradouro, bairro, cidade, uf, cep) 
                      values
                         (?, ?, ?, ?, ?, ?, ?, ?, ?)
                      """;
@@ -70,9 +70,9 @@ public class ClienteDao {
             comando.setString(8, cliente.getEstado());
             comando.setString(9, cliente.getCep());
 
-            cliente.setId(DatabaseUtils.recuperaIdGerado(comando));
-
             comando.execute();
+
+            cliente.setId(DatabaseUtils.recuperaIdGerado(comando));
         } catch (SQLException e) {
             throw new RuntimeException("Deu merda na hora de salvar...", e);
         }

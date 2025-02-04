@@ -2,6 +2,7 @@ package br.com.alura.comex.daos;
 
 import br.com.alura.comex.db.ConnectionFactory;
 import br.com.alura.comex.db.DatabaseUtils;
+import br.com.alura.comex.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.comex.models.Categoria;
 import br.com.alura.comex.models.Produto;
 
@@ -156,6 +157,10 @@ public class ProdutoDao {
 
                     produto.adicionaCategoria(categoria);
                 }
+            }
+
+            if(produto == null) {
+                throw new EntidadeNaoEncontradaException("Produto não encontrado: " + id);
             }
 
             comando.close();

@@ -6,7 +6,13 @@
     <groupId>br.com.alura.comex</groupId>
     <artifactId>comex</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>comex</name>
+
+    <modules>
+        <module>core</module>
+        <module>service</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
